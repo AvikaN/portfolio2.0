@@ -42,7 +42,7 @@
       var pts = [];
       var yScale = d3.scale.linear().domain([-1, 1]).range([(h/2) + 50, (h/2) - 50]);
 
-      for(var i = 0; i<numelements; i+=15)
+      for(var i = 0; i<numelements; i+=10)
       {
         var x_position = i;
         var y_position = yScale(Math.pow(Math.sin(angle),6));
@@ -65,17 +65,27 @@
 
       //set path with points
       var path = defs.append('path')
-            .attr('id', 'our_path')     
+            .attr('id', 'our_path')  
+            //enter a straight line first    
             .attr('d', line(pts))
             .attr('fill', 'none')
             .attr('stroke', '#219bb5')
             .style('stroke-width', 1);
 
+
+      // make the line the text is on visible by actually drawing it
+      // textPath doesn't draw the line, it makes sense
+      var path_use = group.append("use")
+          .attr("xlink:href", "#our_path");
+
+
       var txt = group.append('text') 
             .attr("dy", -10)
+            .attr("id", "my-name")
             .style('text-anchor', 'start')
             .style('font-size', '40px')
-            .style('font-family', 'Kranky');
+            .style('font-family', 'Kranky')
+            .style('opacity', '0.1');
 
 
       var textPath = txt.append('textPath') // create a textPath element with a fill an actual text
@@ -85,10 +95,11 @@
             .attr('letter-spacing', '3px')
             .text('Avika Narula');
 
-          // make the line the text is on visible by actually drawing it
-          // textPath doesn't draw the line, it makes sense
-      var path_use = group.append("use")
-            .attr("xlink:href", "#our_path");
+      d3.select('#my-name')
+          .transition()
+          .duration(2000)
+          .ease('linear')
+          .style('opacity', '1');
 
       //update text path
       function loop_wave()

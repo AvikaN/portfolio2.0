@@ -1,16 +1,34 @@
  <!DOCTYPE html>
  <html>
  	<head>
- 		<title>I</title>	
+ 		<title>Me</title>	
+ 		<link rel="stylesheet" type="text/css" href="/public/javascripts/fullpage.js/jquery.fullPage.css"/>
+ 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ 		<script type="text/javascript" src="/public/javascripts/fullpage.js/jquery.fullPage.js"></script> 
+
  		<link rel="stylesheet" type="text/css" href="/public/css/style.css">
 		<link href='https://fonts.googleapis.com/css?family=Kranky' rel='stylesheet' type='text/css'>	</head> 
  	<body>
- 		<div id = "header-banner">
- 			<div id = "intro-svg"></div> 
- 		</div> 
+ 		<div id = "fullpage"> 
+	 		<div id="div1" data-anchor="page1" class = "section">
+	 			<div id = "intro-svg"></div>
+	 			<a href="#page2"> 
+	 				<div id = "arrow-svg" class = "arrow bounce"></div>  
+	 			</a>
+	 		</div> 
+	 		<div id="div2" data-anchor="page2" class = "section"> 
+	 				
+	 		</div> 
+ 		</div>
  	</body>
  	<script src = "/public/javascripts/perlin.js"></script>
    	<script src="/public/javascripts/d3/d3.min.js"></script>
-   	<script src="/public/javascripts/jquery.min.js"></script>
    	<script src="public/javascripts/intro.js"></script> 
+   	<script> 
+	   	$(document).ready(function() {
+		    $('#fullpage').fullpage({
+		    		anchors:['page1', 'page2']
+		    	});
+		}); 
+   	</script> 
  </html>

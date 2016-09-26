@@ -1,23 +1,66 @@
  <!DOCTYPE html>
  <html>
  	<head>
- 		<title>Me</title>	
+ 		<title></title>	
  		<link rel="stylesheet" type="text/css" href="/public/javascripts/fullpage.js/jquery.fullPage.css"/>
  		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
  		<script type="text/javascript" src="/public/javascripts/fullpage.js/jquery.fullPage.js"></script> 
+ 		<script type="text/javascript" src="/public/javascripts/salvattore.min.js"></script>
 
  		<link rel="stylesheet" type="text/css" href="/public/css/style.css">
-		<link href='https://fonts.googleapis.com/css?family=Kranky' rel='stylesheet' type='text/css'>	</head> 
+		<link href='https://fonts.googleapis.com/css?family=Kranky' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/css?family=Amatica+SC" rel="stylesheet">
+	</head> 
  	<body>
  		<div id = "fullpage"> 
 	 		<div id="div1" data-anchor="page1" class = "section">
-	 			<div id = "intro-svg"></div>
+	 			<div id = "intro-svg" class="svg-container"></div>
+	 			<div id="intro-paragraph">  </div>  
 	 			<a href="#page2"> 
 	 				<div id = "arrow-svg" class = "arrow bounce"></div>  
 	 			</a>
 	 		</div> 
 	 		<div id="div2" data-anchor="page2" class = "section"> 
-	 				
+	 			<div id="grid" data-columns>
+					<div class="column size-1of3">
+						<div class="height-1 tile"> 
+							<span class="across-bottom line blue" id="a1"></span>
+							<span class="up-right line blue" id="a2"></span>
+							<h1 class="underline-orange"> The Refugee Project </h1>  
+						</div>
+						<div class="height-2 tile"> 
+							<span class="across-top line orange" id="b1"></span>
+							<span class="down-right line orange" id="b2"></span>
+							<h1 class="underline-blue"> Regularity &amp; Randomness </h1>
+						</div>
+					</div>
+					<div class="column size-1of3 item">
+						<div class="height-2 tile">
+							<span class="down-left line orange" id="c1"></span>
+							<span class="across-bottom line orange" id="c2"></span>
+							<span class="up-right line orange" id="c3"></span>
+							<h1 class="underline-blue"> Interactive WebVR Experiment </h1>
+						</div>
+						<div class="height-1 tile">
+							<span class="up-left line blue" id="d1"></span>
+							<span class="across-top line blue" id="d2"></span>
+							<span class="down-right line blue" id="d3"></span>
+							<h1 class="underline-orange"> WebVR Doodles </h1>
+						</div>
+					</div>
+					<div class="column size-1of3 item">
+						<div class="height-1 tile">
+							<span class="down-left line blue" id="e1"></span>
+							<span class="across-bottom line blue" id="e2"></span>
+							<h1 class="underline-orange"> Jell, Roll!</h1> 
+						</div>
+						<div class="height-2 tile">
+							<span class="up-left line orange" id="f1"></span>
+							<span class="across-top line orange" id="f2"></span>
+							<h1 class="underline-blue"> Doodles! </h1> 
+						</div>
+					</div>
+				</div>
 	 		</div> 
  		</div>
  	</body>
@@ -25,10 +68,15 @@
    	<script src="/public/javascripts/d3/d3.min.js"></script>
    	<script src="public/javascripts/intro.js"></script> 
    	<script> 
+
 	   	$(document).ready(function() {
 		    $('#fullpage').fullpage({
 		    		anchors:['page1', 'page2']
 		    	});
+
 		}); 
+
+
+
    	</script> 
  </html>

@@ -9,7 +9,7 @@
 
     noise.seed(Math.random());
 
-    var arrowSvg = d3.select("#arrow-svg").append('svg')
+    var arrowSvg = d3.selectAll(".arrow-svg").append('svg')
           .attr('width', 60)
           .attr('height', 45);
 

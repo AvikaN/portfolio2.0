@@ -100,8 +100,8 @@ div > h1:after {
   content: "";
   position: absolute;
   width: 100%;
-  height: 3px;
-  bottom: 0;
+  height: 2px;
+  bottom: -3px;
   left: 0;
   visibility: hidden;
   -webkit-transform: scaleX(0);
@@ -110,9 +110,11 @@ div > h1:after {
   transition: all 0.3s ease-in-out 0s; }
 
 div > .underline-orange:after {
+  opacity: 0.5;
   background-color: #d94701; }
 
 div > .underline-blue:after {
+  opacity: 0.5;
   background-color: #219bb5; }
 
 div:hover > h1:after {

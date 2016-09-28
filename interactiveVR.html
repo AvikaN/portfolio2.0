@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+ <html>
+ 	<head>
+ 		<title>Hello</title>	
+ 		<link rel="stylesheet" type="text/css" href="/public/javascripts/fullpage.js/jquery.fullPage.css"/>
+ 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ 		<script type="text/javascript" src="/public/javascripts/fullpage.js/jquery.fullPage.js"></script> 
+
+ 		<link rel="stylesheet" type="text/css" href="/public/css/page.css">
+		<link href="https://fonts.googleapis.com/css?family=Amatica+SC" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Pavanam" rel="stylesheet">
+	</head> 
+ 	<body>
+ 		<div id = "fullpage"> 
+	 		<div id="div1" data-anchor="page1" class = "section">
+		 		<div id="title"> 
+		 			<h1> Gaze Interaction with WebVR </h1> 
+		 		</div> 
+	 			<div id="description">
+	 				I built this project with Three.js for the Google Cardboard to experiment with gaze interaction. The creatures in the sketch follow your gaze as you explore the scene. I attached a point light to each creature to create pretty light patterns. I'm currently working on improving the efficiency of this sketch, but for the time being it may cause your device to whir. Check out the sketch through your mobile browers with a Google Cardboard <a href="http://avikan.github.io/WebVR/" > here </a> .   
+	 			</div> 
+	 		</div> 
+ 		</div>
+ 	</body>
+   	<script src="/public/javascripts/d3/d3.min.js"></script>
+   	<script> 
+	   	$(document).ready(function() {
+		    $('#fullpage').fullpage({
+		    		anchors:['page1']
+		    	});
+		}); 
+   	</script> 
+ </html>

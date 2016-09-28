@@ -1,0 +1,62 @@
+#div2{
+  background:#606060;
+}
+
+.year {
+    font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
+    font-size: 25px;
+    font-weight: normal;
+    fill:#C0C0C0;
+    text-anchor:middle;
+  }
+  .totalrefugee{
+    font-family:'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
+    font-size: 15px;
+    font-weight: normal;
+    fill:#C0C0C0;
+    text-anchor:middle;
+  }
+  .continentname{
+    font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    fill:#C0C0C0;
+    text-anchor: middle;
+  }
+  .path{
+    fill-rule: evenodd;
+    fill:#888888;
+    fill-opacity: 0.75;
+    stroke:#C0C0C0;
+    stroke-width: 2.35px;
+  }
+  #tooltip {
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    background-color:rgba(0,0,0,0.7);
+    border: solid white 2px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    pointer-events: none;
+  }
+  #tooltip.hidden {
+    display: none;
+  }
+  #tooltip p {
+    margin:0;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    padding:3px;
+    font-size: 13.5px;
+    color: white;
+  }
+ .timelinetext{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    fill:#303030;
+    text-anchor:middle;
+    cursor: pointer;
+ }

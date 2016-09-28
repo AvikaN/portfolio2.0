@@ -88,7 +88,7 @@
             .attr("id", "my-name")
             .style('text-anchor', 'start')
             .style('font-size', '50px')
-            .style('font-family', 'Kranky')
+            .style('font-family', 'Amatica SC')
             .style('opacity', '0.1');
 
     var textPath = txt.append('textPath') // create a textPath element with a fill an actual text

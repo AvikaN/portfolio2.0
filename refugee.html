@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html>
-	<link rel="stylesheet" type="text/css" href="/public/javascripts/fullpage.js/jquery.fullPage.css"/>
+	<head> 
+		<title>Hello</title>	
+		<link rel="stylesheet" type="text/css" href="/public/javascripts/fullpage.js/jquery.fullPage.css"/>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script type="text/javascript" src="/public/javascripts/fullpage.js/jquery.fullPage.js"></script> 
 
-	<link rel="stylesheet" type="text/css" href="/public/css/page.css">
-	<link href="https://fonts.googleapis.com/css?family=Pavanam" rel="stylesheet">
-</html>
-<body> 
-	<h1> The Refugee Project </h1> 
-</body> 
+		<link rel="stylesheet" type="text/css" href="/public/css/page.css">
+		<link rel="stylesheet" type="text/css" href="/public/css/refugee-vis.css">
+		<link href='https://fonts.googleapis.com/css?family=Kranky' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/css?family=Amatica+SC" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Pavanam" rel="stylesheet">
+	</head> 
+	<body>
+ 		<div id = "fullpage"> 
+	 		<div id="div1" data-anchor="page1" class = "section">
+	 			<div id="title"> 
+	 				<h1> The Refugee Project </h1> 
+	 			</div> 
+	 			<div id="description">
+	 				The Refugee Project visualizes data collected by the United Nations High Comissioner for Refugees (UNHCR) from 1985 to 2013. This visualization groups together countries in neighboring regions to disclose the areas around the world with the most refugees. Each cluster represents a continent and is further divided into subregions.  To browse through the years, click on the timeline bubble.
+	 			</div> 
+	 			<a href="#page2"> 
+	 				<div class = "arrow bounce arrow-svg"></div>  
+	 			</a>
+	 		</div> 
+	 		<div id="div2" data-anchor="page2" class="section"> 
+	 			<div id="tooltip" class="hidden">
+			        <p><span id="name"></span></p>
+			        <p>Refugees:<span id="people"></span></p>
+			        <p><span id="change"></span></p>
+			    </div>
+	 			<div id="vis-div"> </div> 
+	 		</div> 
+ 		</div>
+ 	</body>
+ 	<script src="/public/javascripts/d3/d3.min.js"></script>
+ 	<script src="public/javascripts/refugee.js"></script> 
+   	<script> 
+	   	$(document).ready(function() {
+		    $('#fullpage').fullpage({
+		    		anchors:['page1', 'page2']
+		    	});
+
+		}); 
+   	</script> 
+</html> 

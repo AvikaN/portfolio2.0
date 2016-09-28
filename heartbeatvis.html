@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+ <html>
+ 	<head>
+ 		<title>Hello</title>	
+ 		<link rel="stylesheet" type="text/css" href="/public/javascripts/fullpage.js/jquery.fullPage.css"/>
+ 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ 		<script type="text/javascript" src="/public/javascripts/fullpage.js/jquery.fullPage.js"></script> 
+
+ 		<link rel="stylesheet" type="text/css" href="/public/css/page.css">
+		<link href="https://fonts.googleapis.com/css?family=Amatica+SC" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Pavanam" rel="stylesheet">
+	</head> 
+ 	<body>
+ 		<div id = "fullpage"> 
+	 		<div id="div1" data-anchor="page1" class = "section">
+		 		<div id="title"> 
+		 			<h1> Regularity &amp; Randomness </h1> 
+		 			<h3> Pulse Visualizer </h3> 
+		 		</div> 
+	 			<div id="description">
+	 				This project was born out of the two opposing concepts of regularity and randomness. I generated randomness in movement, size, and color of the shapes in the sketches. Then took readings from an Arduino pulse sensor and manipulated an element in the sketch with that data, which changes in regularity with the pulse. Here's what came out of it ~~
+	 			</div> 
+	 			<a href="#page2"> 
+	 				<div class = "arrow bounce arrow-svg"></div>  
+	 			</a>
+	 		</div> 
+	 		<div id="div2" data-anchor="page2" class="section"> 
+	 			<div class ="pulse_sensor_viz"> 
+				        <iframe src="https://player.vimeo.com/video/143106863" width="700" height="470" frameborder="0" webkitallowfullscreen  mozallowfullscreen allowfullscreen></iframe> 
+				</div>
+				<a href="#page3"> 
+	 				<div class = "arrow bounce arrow-svg"></div>  
+	 			</a>
+	 		</div> 
+	 		<div id="div3" data-anchor="page3" class="section"> 
+				<div class = "pulse_sensor_viz">
+				   <iframe src="https://player.vimeo.com/video/143106830" width="700" height="500" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</div>
+	 		</div> 
+ 		</div>
+ 	</body>
+   	<script src="/public/javascripts/d3/d3.min.js"></script>
+   	<script src="/public/javascripts/arrow.js"></script> 
+   	<script> 
+	   	$(document).ready(function() {
+		    $('#fullpage').fullpage({
+		    		anchors:['page1', 'page2','page3']
+		    	});
+		}); 
+   	</script> 
+ </html>

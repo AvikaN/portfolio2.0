@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+ <html>
+ 	<head>
+ 		<title>Hello</title>	
+ 		<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+ 		<!-- full page -->
+ 		<link rel="stylesheet" type="text/css" href="/public/javascripts/fullpage.js/jquery.fullPage.css"/>
+ 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ 		<script type="text/javascript" src="/public/javascripts/fullpage.js/jquery.fullPage.js"></script> 
+
+ 		<link rel="stylesheet" type="text/css" href="/public/css/page.css">
+		<link href="https://fonts.googleapis.com/css?family=Amatica+SC" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Pavanam" rel="stylesheet">
+	</head> 
+ 	<body>
+ 		<div id = "fullpage"> 
+	 		<div id="div1" data-anchor="page1" class = "section">
+		 		<div id="title"> 
+		 			<h1> Catch Some Z's</h1> 
+		 			<h3> A D3 Data Visualization </h3> 
+		 		</div> 
+	 			<div id="description">
+	 				NYC Open Data provides a comprehesive list of all the 311 service calls made by New Yorkers from 2010 to the present. This data visualization maps the nighly noise complaints made in Manhattan to show where you can go to get peaceful nights' sleep. Check out the  visualization <a href="https://avikan.github.io/311NoiseComplaints/"> here</a> . 
+	 			</div> 
+	 		</div>  
+ 		</div>
+ 	</body>
+   	<script> 
+	   	$(document).ready(function() {
+		    $('#fullpage').fullpage({
+		    		anchors:['page1']
+		    	});
+		}); 
+   	</script> 
+ </html>

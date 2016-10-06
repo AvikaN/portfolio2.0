@@ -19,18 +19,15 @@
 	 				<div class = "arrow bounce arrow-svg"></div>  
 	 			</a>
 	 		</div> 
-	 		<div id="div3" data-anchor="page3" class="section"> 
-	 				<!-- lets keep with the line theme -->
-	 				<div id="intro-paragraph">
-
-	 					<div class="padding5"> 
-	 						Avika Narula is currently an undergraduate computer science student at New York University. She enjoys creative coding and likes to work with novel technologies. Creating animations with code brings her joy. She has worked with a vareity of softwares and libraries to bring her works to life. These include (but are not limited to) Processing, D3.js, Three.js, and CSS animations. This <a target="_blank" href= "/public/img/AvikaNarulaResume.pdf">link </a> will take you to her resume.
-	 					</div> 
-	 				 </div> 
-
-	 			<a href="#page3"> 
-	 				<div class = "arrow bounce arrow-svg"></div>  
-	 			</a>
+	 		<div id="div3" data-anchor="page3" class="section">
+	 			<div class="zindex"> 
+		 			<div id = "intro-paragraph"> 
+						Avika Narula is currently an undergraduate computer science student at New York University. She enjoys creative coding and likes to work with novel technologies. Creating animations with code brings her joy. She has worked with a vareity of softwares and libraries to bring her works to life. These include (but are not limited to) Processing, D3.js, Three.js, and CSS animations. This <a target="_blank" href= "/public/img/AvikaNarulaResume.pdf">link </a> will take you to her resume.
+					</div> 
+		 			<a href="#page3"> 
+		 				<div class = "arrow bounce arrow-svg"></div>  
+		 			</a>
+	 			</div>  		
 	 		</div> 
 	 		<div id="div2" data-anchor="page2" class = "section"> 
 	 			<div id="grid" data-columns>
@@ -61,10 +58,10 @@
 						</div>
 					</div>
 					<div class="column size-1of3 item">
-						<div class="height-1 tile" onclick="location.href='comets.html'">
+						<div class="height-1 tile" onclick="location.href='311-visualization.html'">
 							<span class="down-left line blue" id="e1"></span>
 							<span class="across-bottom line blue" id="e2"></span>
-							<h1 class="underline-orange"> The Comets </h1> 
+							<h1 class="underline-orange"> Catch Some Z's </h1> 
 						</div>
 						<div class="height-2 tile">
 							<span class="up-left line orange" id="f1"></span>
@@ -76,10 +73,12 @@
 	 		</div> 
  		</div>
  	</body>
- 	<script src = "/public/javascripts/perlin.js"></script>
-   	<script src="/public/javascripts/d3/d3.min.js"></script>
-   	<script src="public/javascripts/intro.js"></script> 
+
+ 	<script src = "/public/javascripts/perlin.js"> </script>
+ 	<script src = "/public/javascripts/d3/d3.min.js"> </script>
+ 	<script src = "/public/javascripts/intro.js"> </script> 
    	<script> 
+
 	   	$(document).ready(function() {
 		    $('#fullpage').fullpage({
 		    		anchors:['page1', 'page2','page3']

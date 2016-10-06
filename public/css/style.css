@@ -1,22 +1,19 @@
 body {
   background: #ffffff; }
 
+.zindex {
+  z-index: 1; }
+
 #intro-paragraph {
   margin: auto;
   width: 60%;
   text-align: center;
   font-family: 'Pavanam', sans-serif;
-  font-size: 17.5px; 
-}
-
-a{
-  text-decoration: none;
-  color: orange;
-}
-
-.padding5{
-  padding: 5px;
-}
+  font-size: 18px;
+  line-height: 23.5px; }
+  #intro-paragraph a {
+    text-decoration: none;
+    color: orange; }
 
 #grid[data-columns]::before {
   content: '3 .column.size-1of3'; }

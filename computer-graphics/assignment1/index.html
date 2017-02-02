@@ -38,9 +38,9 @@ void main() {
    float radius = length(toCenter) * 2.0;
 
    //radius goes from 0. - 1.
-   pct.r = 0.5 * sin( sin(uTime) + ( - TWO_PI * 2. * (radius))) + 0.5; 
-   pct.b = 0.5 * sin( sin(uTime) + ( - TWO_PI * 2. * (radius))) + 0.5; 
-   pct.g = 0.5 * cos(angle * PI * 2.5) + 0.5; 
+   pct.r = 0.5 * sin( sin(uTime * PI) + ( - TWO_PI * 2. * (radius))) + 0.5; 
+   pct.b = 0.5 * sin( sin(uTime * PI) + ( - TWO_PI * 2. * (radius))) + 0.5; 
+   //pct.g = 0.5 * cos(angle * PI * 2.5) + 0.5; 
 
    color = mix(colorA, colorB, pct); 
    gl_FragColor = vec4(color,1.0);

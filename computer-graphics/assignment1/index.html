@@ -1,0 +1,60 @@
+<script src=lib.js></script>
+
+<body bgcolor=black text=white>
+<center>
+<canvas id='canvas1' width=600 height=600></canvas>
+</center>
+</body>
+
+<script id='vs_script' type='x-shader/x-vertex'>
+   attribute vec3 aPos;
+   varying   vec3 vPos;
+   void main() {
+      gl_Position = vec4(aPos, 1.0);  // Set position of vertex in image.
+      vPos = aPos;                    // Copy pos to a varying variable to
+   }                                  //   interpolate it across pixels.
+</script>
+
+<script id='fs_script' type='x-shader/x-fragment'>
+#define PI 3.14159265359
+#define TWO_PI 6.28318530718
+
+uniform float uTime;
+uniform vec2 uResolution;
+
+vec3 colorA = vec3(0.239,0.0,0.512);
+vec3 colorB = vec3(1.000,1.0,0.224);
+
+
+void main() {
+   vec3 color = vec3(0.0);
+   vec2 st = gl_FragCoord.xy/uResolution;
+   
+   vec3 pct = vec3(st.y); 
+    
+   //use polar cooridnates instead of cartesian coordinates
+   vec2 toCenter = vec2(0.5)-st;
+   float angle = atan(toCenter.y,toCenter.x);
+   float radius = length(toCenter) * 2.0;
+
+   //radius goes from 0. - 1.
+   pct.r = 0.5 * sin( sin(uTime) + ( - TWO_PI * 2. * (radius))) + 0.5; 
+   pct.b = 0.5 * sin( sin(uTime) + ( - TWO_PI * 2. * (radius))) + 0.5; 
+   pct.g = 0.5 * cos(angle * PI * 2.5) + 0.5; 
+
+   color = mix(colorA, colorB, pct); 
+   gl_FragColor = vec4(color,1.0);
+  
+}
+   
+</script>
+
+<script>
+
+var vs = vs_script.innerHTML, fs = fs_script.innerHTML;
+
+addTextEditor(fs, function() { canvas1.setShaders(vs, this.value); });
+
+gl_start(canvas1, vs, fs);
+
+</script>

@@ -1,0 +1,118 @@
+<script src=lib.js></script>
+
+<body bgcolor=black text=white>
+<center>
+<canvas id='canvas1' width=600 height=600></canvas>
+</center>
+</body>
+
+<script id='vs_script' type='x-shader/x-vertex'>
+   attribute vec3 aPos;
+   varying   vec3 vPos;
+   void main() {
+      gl_Position = vec4(aPos, 1.0);
+      vPos = aPos;
+   }
+</script>
+
+<script id='fss_script' type='x-shader/x-fragment'>
+---------------------------------------------------------------------
+varying vec3 vPos;                               // Position in image
+uniform float uTime;                             // Time
+
+vec2 raytraceSphere(vec3 V, vec3 W, vec4 S) {
+   V -= S.xyz;
+   float B = 2. * dot(V, W);
+   float C = dot(V, V) - S.w * S.w;
+   float discrim = B*B - 4.*C;
+   return discrim < 0. ? vec2(1000., 1000.)
+                       : vec2(-B - discrim, -B + discrim) / 2.;
+}
+
+bool isShadow(vec3 LPos, vec3 P, int i){
+  vec3 sRay = LPos - P; 
+  vec3 sOri = P + 0.01; 
+  bool shadow = false; 
+  
+  for(int k = 0; k < 2; k++){
+      if(k == i){ 
+        continue; 
+      }
+
+      vec2 trace = raytraceSphere(sOri, sRay, uSpheres[k]);
+      if(trace.x > 0.0){
+         shadow = true; 
+         break; 
+      }
+
+  }
+
+  return shadow; 
+}
+
+
+vec3 phong(vec3 N, vec3 E, vec3 A, vec3 D, vec4 S, vec3 P) {
+   vec3 c = A;                                 // Ambient color
+   for (int i = 0 ; i < uLDirs_length ; i++) { // Loop through lights
+      vec3 LDir = normalize(uLDirs[i]);
+      float d = max(0., dot(N, LDir));           // Diffuse value
+      vec3 R = 2. * dot(N, LDir) * N - LDir;     // Reflection dir
+      float s = pow(max(0., dot(E, R)), S.a);    // Specular value
+
+      if(isShadow(uLDirs[i], P, i)){  
+        d = 0.; 
+        s = 0.; 
+      }
+      c += uLColors[i] * (d * D + s * S.rgb * .1*S.a);
+   }
+   return c;
+}
+
+void main() {
+   vec3 c = vec3(.01,.01,.04);                   // Dark background
+
+   vec3 V = vec3(0.,0.,0.);                      // Ray origin
+   vec3 W = normalize(vec3(vPos.xy, -3.));       // Ray direction
+   vec3 E = -W;                                  // Direction to eye
+   float distance = 1000.;
+   for (int i = 0 ; i < 2 ; i++) {
+      vec4 S = uSpheres[i];
+      vec2 t = raytraceSphere(V, W, S);             // Trace sphere
+      if (t.x < distance) {
+         distance = t.x;
+         vec3 P = V + t.x * W;                      // Point on sphere
+         vec3 N = normalize(P - S.xyz);             // Surface normal
+    c = phong(N, E, 0.5 * uSColors[i].rgb,
+                    0.5 * uSColors[i].rgb,
+          vec4(.5,.5,.5,10.), P);
+      }
+   }
+
+   gl_FragColor = vec4(sqrt(c), 1.);             // Final pixel color
+}
+
+---------------------------------------------------------------------
+Shadow
+
+
+</script>
+   
+<script>
+addTextEditor(fss_script.innerHTML.split('---------------------------------------------------------------------'),
+              function() { canvas1.setFragmentShader(this.value); });
+
+declareUniform('uSpheres', 'vec4', 3);
+declareUniform('uSColors', 'vec4', 3);
+declareUniform('uLDirs', 'vec3', 2);
+declareUniform('uLColors', 'vec3', 2);
+
+gl_start(canvas1, vs_script.innerHTML, function() {
+   var s = 0.5 * Math.sin(2 * time);
+   setUniform('uSpheres', [-.5,0.,-4+s,.5, .5,.5,-4-s,.5, .5,0.,-4-s,.5]);
+   setUniform('uSColors', [1,.3,.3,2, .3,.3,1,6, 1,.7,0,10]);
+   setUniform('uLDirs', [1,1,1, -1,-1,-1]);
+   setUniform('uLColors', [.5,.5,1, .2,.1,.1]);
+});
+
+</script>
+

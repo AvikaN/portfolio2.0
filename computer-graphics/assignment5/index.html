@@ -1,0 +1,74 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Canvas Rendering</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<canvas id="canvas" width="1000" height="500"></canvas> 
+  	<script type="text/javascript">
+  		
+  		var num  = 15; 
+  		var step = 10; 
+	  	var canvas = document.getElementById('canvas'); 
+	  	var ctx = canvas.getContext('2d');
+	  	var width = canvas.width; 
+	  	var height = canvas.height; 
+	  	ctx.lineWidth=1;
+
+	  	var angle = 0; 
+
+	  	draw();
+
+	  	function draw(){
+	  		ctx.clearRect(0,0,width,height);
+
+	  		angle+= 0.030;
+		  	for(var i = 1; i < num; i++){
+		  		//get size of the arc
+		  		var size = step * i; 
+		  		var offset = (Math.PI) / num * i; 
+		  
+		  		//first art
+		  		var endAngle = map_range(Math.cos(angle + offset), -1 , 1, Math.PI, Math.PI + (Math.PI / 2));
+		  		//draw arc
+		  		ctx.beginPath(); 
+		  		ctx.arc(width/2 - 70, height/2, size, Math.PI, endAngle);
+		  		ctx.stroke();
+
+
+		  		//second arc
+		  		var startAngle = map_range(Math.sin(angle + offset), -1 , 1, Math.PI + (Math.PI / 2) , Math.PI * 2); 
+		  		ctx.beginPath(); 
+		  		ctx.arc(width/2 - 70, height/2, size, startAngle, Math.PI * 2);
+		  		ctx.stroke(); 
+
+		  		//third arc
+		  		var endAngle2 = map_range(Math.sin(angle + offset), -1 , 1, Math.PI * 2, Math.PI * 2 + (Math.PI / 2));
+		  
+		  		ctx.beginPath(); 
+		  		ctx.arc(width/2 + 70, height/2, size, Math.PI * 2, endAngle2);
+		  		ctx.stroke();
+
+		  		var startAngle2 = map_range(Math.cos(angle + offset), -1 , 1, Math.PI * 2 + (Math.PI / 2) , Math.PI * 3);
+
+		  		//fourth arc
+		  		ctx.beginPath(); 
+		  		ctx.arc(width/2 + 70, height/2, size, startAngle2, Math.PI * 3);
+		  		ctx.stroke(); 
+
+		  	}
+
+		  	window.requestAnimationFrame(draw);
+	  	}
+
+	  	function map_range(value, low1, high1, low2, high2) {
+    		return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+		}
+
+	</script>
+</body>
+</html>

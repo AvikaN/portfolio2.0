@@ -1,0 +1,84 @@
+
+<table>
+
+<tr>
+<td><canvas id=canvas1 width=600 height=400></td>
+<td width=50></td>
+<td valign=top>
+</td>
+</tr>
+
+</table>
+
+<script src=drawlib2.js></script>
+<script src=M.js></script>
+<script src=S.js></script>
+<script>
+
+   var m = [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0];
+
+   var Hermite = [2,-3,0,1, -2,3,0,0, 1,-2,1,0, 1,-1,0,0];
+   var Bezier = [-1,3,-3,1, 3,-6,3,0, -3,3,0,0, 1,0,0,0];
+
+   function cubic(A, t) { return A[0] * t*t*t + A[1] * t*t + A[2] * t + A[3]; }
+
+   function makeSpline(x, y, rotate, c){
+      M.save(m);
+      M.rotateZ(m, rotate);
+      
+      var P0 = [0, 0,  0];
+      var P1 = [0, 0,  0];
+      var R0 = [x, y, 0];
+      var R1 = [-1 * x, y,  0];
+
+      var X = M.transform(Hermite, [ P0[0], P1[0], R0[0], R1[0] ]),
+          Y = M.transform(Hermite, [ P0[1], P1[1], R0[1], R1[1] ]),
+          Z = M.transform(Hermite, [ P0[2], P1[2], R0[2], R1[2] ]);
+
+      var C = [];
+      for (var t = 0 ; t < 1.001 ; t += 1/20)
+      C.push([ cubic(X,t), cubic(Y,t), cubic(Z,t) ]);
+
+      c.drawCurves(m, [ C ]);
+      M.restore(m);
+   }
+
+   canvas1.update = function(g) {
+      g.lineCap = 'round';
+      g.lineJoin = 'round';
+      g.lineWidth = 1;
+
+      // OUTLINE THE CANVAS
+
+      g.beginPath();
+      g.moveTo(0,0);
+      g.lineTo(this.width,0);
+      g.lineTo(this.width,this.height);
+      g.lineTo(0,this.height);
+      g.lineTo(0,0);
+      g.strokeStyle="#b2b2ff";
+      g.stroke();
+
+
+      M.identity(m);
+
+
+      var numPetals = 8;
+      var rotateConst = Math.PI / 4; 
+
+      for(var i = 1; i <= numPetals; i++){
+          //need a delay
+          var xSpline = map_range(Math.sin(time + (i / 3.5)), -1, 1 , 0.1 , 1) * 2; 
+          var ySpline = map_range(Math.sin(time + (i / 3.5)), -1, 1, 0.1, 1) * 1.5;
+          makeSpline(xSpline,ySpline,i * rotateConst, this);
+      }
+   
+   }
+
+   function map_range(value, low1, high1, low2, high2) {
+         return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+   }
+
+   drawCanvases([canvas1]);
+</script>
+

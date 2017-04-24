@@ -1,0 +1,184 @@
+<script src=M.js></script>
+<script src=lib2g.js></script>
+
+<body bgcolor=black text=white>
+<center>
+<canvas id='canvas1' width=600 height=600></canvas>
+</center>
+</body>
+
+<script id='vs_script' type='x-shader/x-vertex'>
+   attribute vec3 aPos, aNor;
+   varying   vec3 vPos, vNor;
+   uniform   mat4 matrix, invMatrix;
+   void main() {
+      vec4 pos = matrix * vec4(aPos, 1.);
+      vec4 nor = vec4(aNor, 0.) * invMatrix;
+
+      gl_Position = pos;
+      vPos = pos.xyz;
+      vNor = nor.xyz;
+   }
+</script>
+
+<script id='fs_script' type='x-shader/x-fragment'>
+varying vec3 vPos, vNor;
+void main() {
+   vec3 LDir = normalize(vec3(1., 0.1, 0.50));
+   vec3 N = normalize(vNor);
+   vec3 E = vec3(-1.);
+   vec3 R = 2. * dot(N, LDir) * N - LDir;
+   float d = max(0., dot(N, LDir));
+   float s = pow(max(0., dot(E,R)), 10.);
+   vec3 c = vec3(d);
+   c += s;
+   gl_FragColor = vec4(vec3(sqrt(c)), 1.);
+}
+
+</script>
+   
+<script>
+
+var m = M.identityMatrix();
+
+var vs = vs_script.innerHTML, fs = fs_script.innerHTML;
+
+addTextEditor(fs, function() { canvas1.setShaders(vs, this.value); });
+
+var obj1, obj2;
+
+gl_start(canvas1, vs, fs,
+   function(time) {
+      M.identity(m);
+      M.rotateY(m, time / 2);
+      M.rotateX(m, time / 2);
+      M.rotateZ(m, time / 2);
+
+      M.save(m);
+         obj1.setMatrix(m);
+      M.restore(m);
+
+      // M.save(m);
+      //    M.rotateX(m, .5);
+      //    obj2.setMatrix(m);
+      // M.restore(m);
+   }
+);
+
+   var scene = new Scene();
+
+   //12 verticies and 20 triangles 
+   var t = (1.0 + Math.sqrt(5.0)) / 2.0;
+    
+   var v = [
+        [-1, t, 0], 
+        [1, t , 0], 
+        [-1, -t, 0], 
+        [1, -t, 0], 
+
+        [0, -1, t], 
+        [0, 1, t],
+        [0, -1, -t], 
+        [0, 1, -t], 
+
+        [t, 0, -1], 
+        [t, 0 , 1], 
+        [-t, 0, -1], 
+        [-t, 0 , 1]
+   ];
+
+   var s = 0.20;
+
+   obj1 = new SceneObject();
+   obj1.setVertices([
+      //first 5 faces
+      v[0][0] * s,v[0][1] * s, v[0][2] * s,  0,0,0,
+      v[11][0] * s,v[11][1] * s, v[11][2] * s,  0,0,0,
+      v[5][0] * s, v[5][1] * s, v[5][2] * s, 0,0,0, 
+
+      v[0][0] * s,v[0][1] * s, v[0][2] * s,  0.10,0,0,
+      v[5][0] * s,v[5][1] * s, v[5][2] * s,  0.15,0,0.15, 
+      v[1][0] * s, v[1][1] * s, v[1][2] * s, 0.40,0,0.20, 
+
+      v[0][0] * s,v[0][1] * s, v[0][2] * s,  0.10,0,0,
+      v[1][0] * s,v[1][1] * s, v[1][2] * s,  0.40,0,0.20, 
+      v[7][0] * s, v[7][1] * s, v[7][2] * s, 0.10,0.75,0, 
+
+      v[0][0] * s,v[0][1] * s, v[0][2] * s,  0.10,0,0,
+      v[7][0] * s,v[7][1] * s, v[7][2] * s, 0.10,0.75,0, 
+      v[10][0] * s, v[10][1] * s, v[10][2] * s, 0.42,0,0, 
+
+      v[0][0] * s,v[0][1] * s, v[0][2] * s,  0.10,0,0,
+      v[10][0] * s,v[10][1] * s, v[10][2] * s,  0.42,0,0,
+      v[11][0] * s, v[11][1] * s, v[11][2] * s, 0.30,0.10,0,
+
+      //next 5
+      v[1][0] * s,v[1][1] * s, v[1][2] * s,  0.40,0,0.20, 
+      v[5][0] * s,v[5][1] * s, v[5][2] * s,  0.15,0,0.15, 
+      v[9][0] * s, v[9][1] * s, v[9][2] * s, 0,0.20,0.90, 
+
+      v[5][0] * s,v[5][1] * s, v[5][2] * s,  0.15,0,0.15, 
+      v[11][0] * s,v[11][1] * s, v[11][2] * s, 0.30,0.10,0,
+      v[4][0] * s, v[4][1] * s, v[4][2] * s, 0,0.10,0,
+
+      v[11][0] * s,v[11][1] * s, v[11][2] * s,  0.30,0.10,0,
+      v[10][0] * s,v[10][1] * s, v[10][2] * s,  0.42,0,0,
+      v[2][0] * s, v[2][1] * s, v[2][2] * s, 0,0,0.25,  
+
+      v[10][0] * s,v[10][1] * s, v[10][2] * s,  0.42,0,0,
+      v[7][0] * s,v[7][1] * s, v[7][2] * s,  0.10,0.75,0, 
+      v[6][0] * s, v[6][1] * s, v[6][2] * s, 0,0.30,0.10,  
+
+      v[7][0] * s,v[7][1] * s, v[7][2] * s,  0.10,0.75,0, 
+      v[1][0] * s,v[1][1] * s, v[1][2] * s,  0.40,0,0.20, 
+      v[8][0] * s, v[8][1] * s, v[8][2] * s, 0.90,0,0.35, 
+
+      //next 5
+      v[3][0] * s,v[3][1] * s, v[3][2] * s,  0,0.10,0.40,
+      v[9][0] * s,v[9][1] * s, v[9][2] * s,  0,0.20,0.90, 
+      v[4][0] * s, v[4][1] * s, v[4][2] * s, 0,0.10,0,
+
+      v[3][0] * s,v[3][1] * s, v[3][2] * s,   0,0.10,0.40,
+      v[4][0] * s,v[4][1] * s, v[4][2] * s,  0,0.10,0,
+      v[2][0] * s, v[2][1] * s, v[2][2] * s, 0,0,0.25,
+
+      v[3][0] * s,v[3][1] * s, v[3][2] * s,  0,0.10,0.40,
+      v[2][0] * s,v[2][1] * s, v[2][2] * s,  0,0,0.25,
+      v[6][0] * s, v[6][1] * s, v[6][2] * s, 0,0.30,0.10,
+
+      v[3][0] * s,v[3][1] * s, v[3][2] * s,  0,0.10,0.40,
+      v[6][0] * s,v[6][1] * s, v[6][2] * s,  0,0.30,0.10,
+      v[8][0] * s, v[8][1] * s, v[8][2] * s, 0.90,0,0.35,
+
+      v[3][0] * s,v[3][1] * s, v[3][2] * s,  0,0.10,0.40,
+      v[8][0] * s,v[8][1] * s, v[8][2] * s,  0.90,0,0.35,
+      v[9][0] * s, v[9][1] * s, v[9][2] * s, 0,0.20,0.90, 
+
+    //last 5
+      v[4][0] * s,v[4][1] * s, v[4][2] * s,  0,0.10,0,
+      v[9][0] * s,v[9][1] * s, v[9][2] * s,  0,0.20,0.90, 
+      v[5][0] * s, v[5][1] * s, v[5][2] * s, 0.15,0,0.15, 
+
+      v[2][0] * s,v[2][1] * s, v[2][2] * s,  0,0,0.25,
+      v[4][0] * s,v[4][1] * s, v[4][2] * s,  0,0.10,0,
+      v[11][0] * s, v[11][1] * s, v[11][2] * s, 0.30,0.10,0,
+
+      v[6][0] * s,v[6][1] * s, v[6][2] * s,  0,0.30,0.10,
+      v[2][0] * s,v[2][1] * s, v[2][2] * s,  0,0,0.25,
+      v[10][0] * s, v[10][1] * s, v[10][2] * s,0.42,0,0,
+
+      v[8][0] * s,v[8][1] * s, v[8][2] * s,  0.90,0,0.35,
+      v[6][0] * s,v[6][1] * s, v[6][2] * s,  0,0.30,0.10,
+      v[7][0] * s, v[7][1] * s, v[7][2] * s, 0.10,0.75,0, 
+
+      v[9][0] * s,v[9][1] * s, v[9][2] * s,  0,0.20,0.90, 
+      v[8][0] * s,v[8][1] * s, v[8][2] * s,  0.90,0,0.35,
+      v[1][0] * s, v[1][1] * s, v[1][2] * s, 0.40,0,0.20, 
+
+   ]);
+   scene.addObject(obj1);
+   canvas1.scene = scene;
+
+
+</script>
+

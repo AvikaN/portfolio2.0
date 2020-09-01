@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello</title>	
+        <link rel="stylesheet" type="text/css" href="/public/javascripts/fullpage.js/jquery.fullPage.css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/public/javascripts/fullpage.js/jquery.fullPage.js"></script> 
+        <script type="text/javascript" src="/public/javascripts/salvattore.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="/public/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/public/css/page.css">
+        <link href="https://fonts.googleapis.com/css?family=Amatica+SC" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Pavanam" rel="stylesheet">
+   </head> 
+    <body>
+        <div id = "fullpage"> 
+            <div id="div3" data-anchor="page1" class="section">
+                <div class="zindex"> 
+                    <div id="title"> 
+                        <h1> Butterfly Network - iOS </h1> 
+                    </div> 
+                    <div id = "description"> 
+                        I worked as an iOS engineer at <a href="https://www.butterflynetwork.com"> Butterfly Network </a>for over a year. Butterfly Network makes handheld portable ultrasound devices that plug into iPhones and iPads. This makes the iOS app an integral part of the business. I worked with product and clinical partners to bring the veterinarian and enterprise offering to the market, amongst other things. I thoroughly enjoyed my time working there as an iOS engineer. Scroll down to get a glimpse of the app. To read more about my experience check out my <a target="_blank" href= "/public/img/AvikaNarulaResume.pdf"> resume </a>.
+                   </div> 
+                    <a href="#page3"> 
+                        <div class = "arrow bounce arrow-svg"></div>  
+                    </a>
+                </div>  		
+            </div> 
+            <div id="div2" data-anchor="page2" class = "section"> 
+                <div id="grid-2" data-columns>
+                   <div class="column size-1of4">
+                       <div class="butterfly-desc orange-border"> 
+                           <body> The Butterfly iQ is a handheld ultrasound device which you interface with through the iQ app. </body>  
+                       </div>
+                       <div class="butterfly-img"> 
+                        <img src="/public/img/ButterflyNetwork4.jpeg" alt="">
+                    </div>
+                   </div>
+                   <div class="column size-1of4">
+                       <div class="butterfly-desc blue-border">
+                           <body> The iQ app has the ability to scan the entire body through an intuitive and easy to use interface. </body>
+                       </div>
+                       <div class="butterfly-img"> 
+                         <img src="/public/img/ButterflyNetwork3.jpeg" alt="">
+                        </div>
+                   </div>
+                   <div class="column size-1of4">
+                       <div class="butterfly-desc orange-border">
+                          <body> After the images are captured, they can be saved and uploaded to the cloud to selected archives. </body>
+                       </div>
+                       <div class="butterfly-img"> 
+                        <img src="/public/img/ButterflyNetwork2.jpeg" alt="">
+                       </div>
+                   </div>
+                   <div class="column size-1of4">
+                    <div class="butterfly-desc blue-border"> 
+                        <body> The images captured can be annotated and reviewed by clinicians right on the app. </body>  
+                    </div>
+                    <div class="butterfly-img"> 
+                        <img src="/public/img/ButterflyNetwork1.jpeg" alt="">
+                    </div>
+                  </div>
+               </div>
+            </div> 
+        </div>
+    </body>
+
+    <script src = "/public/javascripts/perlin.js"> </script>
+    <script src = "/public/javascripts/d3/d3.min.js"> </script>
+    <script src = "/public/javascripts/intro.js"> </script> 
+      <script> 
+
+          $(document).ready(function() {
+           $('#fullpage').fullpage({
+                   anchors:['page1', 'page2','page3']
+               });
+
+       }); 
+      </script> 
+</html>
